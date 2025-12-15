@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gamma Controller", "Gamma Controller.csproj", "{D4766452-7CC8-46FC-819C-F30AAE0A8FFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4766452-7CC8-46FC-819C-F30AAE0A8FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4766452-7CC8-46FC-819C-F30AAE0A8FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4766452-7CC8-46FC-819C-F30AAE0A8FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4766452-7CC8-46FC-819C-F30AAE0A8FFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB3040A0-BE29-43B5-8601-9035171B3A77}
+	EndGlobalSection
+EndGlobal
