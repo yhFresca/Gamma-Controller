@@ -10,30 +10,6 @@ using System.Text;
 
 namespace GammaControllerApp
 {
-    public class GammaProfile
-    {
-        public string Name { get; set; }
-        public double Gamma { get; set; }
-        public double Brightness { get; set; }
-        public double Contrast { get; set; }
-        public Keys MainKey { get; set; }
-        public Keys Modifiers { get; set; }
-        public int HotkeyId { get; set; }
-
-        public GammaProfile() { }
-
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append(Name).Append(" [");
-            if ((Modifiers & Keys.Control) != 0) sb.Append("Ctrl+");
-            if ((Modifiers & Keys.Alt) != 0) sb.Append("Alt+");
-            if ((Modifiers & Keys.Shift) != 0) sb.Append("Shift+");
-            sb.Append(MainKey.ToString());
-            sb.Append("]");
-            return sb.ToString();
-        }
-    }
 
     public partial class MainForm : Form
     {
@@ -87,16 +63,16 @@ namespace GammaControllerApp
             comboScreens = new ComboBox() { Location = new Point(100, 20), Size = new Size(200, 25), DropDownStyle = ComboBoxStyle.DropDownList };
 
             Label l1 = new Label() { Text = "Gamma:", Location = new Point(20, 70), AutoSize = true };
-            trackGamma = new TrackBar() { Location = new Point(90, 70), Size = new Size(200, 45), Minimum = 1, Maximum = 30, TickFrequency = 5, Value = 10 };
-            numGamma = new NumericUpDown() { Location = new Point(300, 70), Size = new Size(55, 25), DecimalPlaces = 1, Increment = 0.1M, Minimum = 0.1M, Maximum = 3.0M, Value = 1.0M };
+            trackGamma = new TrackBar() { Location = new Point(90, 70), Size = new Size(200, 45), Minimum = 0, Maximum = 30, TickFrequency = 2, Value = 10 };
+            numGamma = new NumericUpDown() { Location = new Point(300, 70), Size = new Size(55, 25), DecimalPlaces = 2, Increment = 0.1M, Minimum = 0.0M, Maximum = 3.0M, Value = 1.0M };
 
             Label l2 = new Label() { Text = "Brightness:", Location = new Point(20, 120), AutoSize = true };
-            trackBrightness = new TrackBar() { Location = new Point(90, 120), Size = new Size(200, 45), Minimum = 0, Maximum = 20, TickFrequency = 5, Value = 10 };
-            numBrightness = new NumericUpDown() { Location = new Point(300, 120), Size = new Size(55, 25), DecimalPlaces = 1, Increment = 0.1M, Minimum = 0.0M, Maximum = 2.0M, Value = 1.0M };
+            trackBrightness = new TrackBar() { Location = new Point(90, 120), Size = new Size(200, 45), Minimum = 0, Maximum = 20, TickFrequency = 1, Value = 10 };
+            numBrightness = new NumericUpDown() { Location = new Point(300, 120), Size = new Size(55, 25), DecimalPlaces = 2, Increment = 0.1M, Minimum = 0.0M, Maximum = 2.0M, Value = 1.0M };
 
             Label l3 = new Label() { Text = "Contrast:", Location = new Point(20, 170), AutoSize = true };
-            trackContrast = new TrackBar() { Location = new Point(90, 170), Size = new Size(200, 45), Minimum = 0, Maximum = 20, TickFrequency = 5, Value = 10 };
-            numContrast = new NumericUpDown() { Location = new Point(300, 170), Size = new Size(55, 25), DecimalPlaces = 1, Increment = 0.1M, Minimum = 0.0M, Maximum = 2.0M, Value = 1.0M };
+            trackContrast = new TrackBar() { Location = new Point(90, 170), Size = new Size(200, 45), Minimum = 40, Maximum = 60, TickFrequency = 1, Value = 50 };
+            numContrast = new NumericUpDown() { Location = new Point(300, 170), Size = new Size(55, 25), DecimalPlaces = 3, Increment = 0.01M, Minimum = 0.8M, Maximum = 1.2M, Value = 1.0M };
 
             btnReset = new Button() { Text = "Reset Default", Location = new Point(100, 230), Size = new Size(200, 35) };
             btnReset.Click += (s, e) => ResetToDefaultValues();
@@ -335,6 +311,30 @@ namespace GammaControllerApp
                 if (profile != null) ApplyProfileToUI(profile);
             }
             base.WndProc(ref m);
+        }
+    }
+    public class GammaProfile
+    {
+        public string Name { get; set; }
+        public double Gamma { get; set; }
+        public double Brightness { get; set; }
+        public double Contrast { get; set; }
+        public Keys MainKey { get; set; }
+        public Keys Modifiers { get; set; }
+        public int HotkeyId { get; set; }
+
+        public GammaProfile() { }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append(Name).Append(" [");
+            if ((Modifiers & Keys.Control) != 0) sb.Append("Ctrl+");
+            if ((Modifiers & Keys.Alt) != 0) sb.Append("Alt+");
+            if ((Modifiers & Keys.Shift) != 0) sb.Append("Shift+");
+            sb.Append(MainKey.ToString());
+            sb.Append("]");
+            return sb.ToString();
         }
     }
 }
