@@ -116,11 +116,11 @@ namespace GammaControllerApp
 
             trackGamma.Scroll += (s, e) => SyncTrackToNum(trackGamma, numGamma);
             trackBrightness.Scroll += (s, e) => SyncTrackToNum(trackBrightness, numBrightness);
-            trackContrast.Scroll += (s, e) => SyncTrackToNum(trackContrast, numContrast);
+            trackContrast.Scroll += (s, e) => SyncTrackToNum(trackContrast, numContrast, 50);
 
             numGamma.ValueChanged += (s, e) => { SyncNumToTrack(numGamma, trackGamma); ApplyCurrentSettings(); };
             numBrightness.ValueChanged += (s, e) => { SyncNumToTrack(numBrightness, trackBrightness); ApplyCurrentSettings(); };
-            numContrast.ValueChanged += (s, e) => { SyncNumToTrack(numContrast, trackContrast); ApplyCurrentSettings(); };
+            numContrast.ValueChanged += (s, e) => { SyncNumToTrack(numContrast, trackContrast, 50); ApplyCurrentSettings(); };
 
             txtHotkeyCapture.KeyDown += (s, e) => {
                 e.SuppressKeyPress = true;
@@ -148,22 +148,22 @@ namespace GammaControllerApp
             comboScreens.SelectedIndex = 0;
         }
 
-        private void SyncTrackToNum(TrackBar track, NumericUpDown num)
+        private void SyncTrackToNum(TrackBar track, NumericUpDown num, int factor = 10)
         {
             if (isSyncing) return;
             isSyncing = true;
-            decimal val = (decimal)(track.Value / 10.0);
+            decimal val = (decimal)(track.Value / (decimal)factor);
             if (val < num.Minimum) val = num.Minimum;
             if (val > num.Maximum) val = num.Maximum;
             num.Value = val;
             isSyncing = false;
         }
 
-        private void SyncNumToTrack(NumericUpDown num, TrackBar track)
+        private void SyncNumToTrack(NumericUpDown num, TrackBar track, int factor = 10)
         {
             if (isSyncing) return;
             isSyncing = true;
-            int val = (int)(num.Value * 10);
+            int val = (int)(num.Value * factor);
             if (val < track.Minimum) val = track.Minimum;
             if (val > track.Maximum) val = track.Maximum;
             track.Value = val;
